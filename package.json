@@ -1,0 +1,13 @@
+{
+  "name": "datafest-mentoring",
+  "version": "1.0.0",
+  "description": "Mentor sign-up system for DataFest",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  }
+}
