@@ -52,7 +52,7 @@ function renderCalendar() {
             timeSlot.innerHTML = `
                 <span>${time}</span>
                 <button onclick="toggleSignup('${slotKey}')">${isSignedUp ? "Unselect" : "Select"}</button>
-                <p>${signups[slotKey].join("<br>") || "No signups yet"}</p>
+                <p>${signups[slotKey].join("<br>")}</p>
             `;
 
             dayContainer.appendChild(timeSlot);
