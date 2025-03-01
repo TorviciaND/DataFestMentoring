@@ -34,12 +34,12 @@ async function saveSignup(slotKey) {
 // Render the calendar dynamically
 function renderCalendar() {
     const calendarContainer = document.getElementById("calendar");
-    calendarContainer.innerHTML = "";
+    calendarContainer.innerHTML = ""; // Clear previous content
 
     shifts.forEach((shift) => {
         const dayContainer = document.createElement("div");
         dayContainer.className = "day-container";
-        dayContainer.innerHTML = `<h2>${shift.day}</h2>`;
+        dayContainer.innerHTML = `<h2>${shift.day}</h2>`; // Display the day
 
         shift.times.forEach((time) => {
             const slotKey = `${shift.day} - ${time}`;
@@ -49,10 +49,12 @@ function renderCalendar() {
             timeSlot.className = "time-slot";
 
             const isSignedUp = signups[slotKey].includes(getCurrentName());
+            const signupsText = signups[slotKey].length > 0 ? signups[slotKey].join("<br>") : ""; // Empty string if no signups
+
             timeSlot.innerHTML = `
                 <span>${time}</span>
                 <button onclick="toggleSignup('${slotKey}')">${isSignedUp ? "Unselect" : "Select"}</button>
-                <p>${signups[slotKey].join("<br>")}</p>
+                <p>${signupsText}</p> <!-- Only show signups if there are any -->
             `;
 
             dayContainer.appendChild(timeSlot);
@@ -61,6 +63,7 @@ function renderCalendar() {
         calendarContainer.appendChild(dayContainer);
     });
 }
+
 
 // Get the currently entered name
 function getCurrentName() {
