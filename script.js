@@ -5,11 +5,12 @@ let shifts = [
 ];
 
 let signups = {};
+const API_URL = "https://datafestmentoring-1.onrender.com/signups"; // Updated API URL
 
-// Fetch signups from server
+// Fetch signups from Render server
 async function loadSignups() {
     try {
-        const response = await fetch("http://localhost:3000/signups");
+        const response = await fetch(API_URL);
         signups = await response.json();
         renderCalendar();
     } catch (error) {
@@ -17,10 +18,10 @@ async function loadSignups() {
     }
 }
 
-// Save signups to server
+// Save signups to Render server
 async function saveSignup(slotKey) {
     try {
-        await fetch("http://localhost:3000/signups", {
+        await fetch(API_URL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ slotKey, names: signups[slotKey] })
@@ -30,7 +31,7 @@ async function saveSignup(slotKey) {
     }
 }
 
-// Render the calendar
+// Render the calendar dynamically
 function renderCalendar() {
     const calendarContainer = document.getElementById("calendar");
     calendarContainer.innerHTML = "";
@@ -46,10 +47,12 @@ function renderCalendar() {
 
             const timeSlot = document.createElement("div");
             timeSlot.className = "time-slot";
+
+            const isSignedUp = signups[slotKey].includes(getCurrentName());
             timeSlot.innerHTML = `
                 <span>${time}</span>
-                <button onclick="toggleSignup('${slotKey}')">${signups[slotKey].includes(getCurrentName()) ? "Unselect" : "Select"}</button>
-                <p>${signups[slotKey].join("<br>") || ""}</p>
+                <button onclick="toggleSignup('${slotKey}')">${isSignedUp ? "Unselect" : "Select"}</button>
+                <p>${signups[slotKey].join("<br>") || "No signups yet"}</p>
             `;
 
             dayContainer.appendChild(timeSlot);
@@ -76,8 +79,10 @@ function toggleSignup(slotKey) {
     }
 
     if (signups[slotKey].includes(name)) {
+        // Remove name from slot
         signups[slotKey] = signups[slotKey].filter(n => n !== name);
     } else {
+        // Add name to slot
         signups[slotKey].push(name);
     }
 
@@ -85,4 +90,5 @@ function toggleSignup(slotKey) {
     renderCalendar();
 }
 
+// Load existing signups when page loads
 loadSignups();
