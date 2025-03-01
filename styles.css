@@ -1,0 +1,58 @@
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0C2340; /* Notre Dame Blue */
+            color: #C99700; /* Notre Dame Gold */
+            text-align: center;
+            margin: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            color: #0C2340;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #C99700;
+            border-radius: 5px;
+        }
+        .calendar {
+            display: flex;
+            justify-content: space-around;
+            gap: 15px;
+        }
+        .day-container {
+            background: #C99700;
+            padding: 10px;
+            border-radius: 5px;
+            color: #0C2340;
+            width: 30%;
+        }
+        .time-slot {
+            background: white;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            background: #0C2340;
+            color: #C99700;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #C99700;
+            color: #0C2340;
+        }
